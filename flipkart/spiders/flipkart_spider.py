@@ -10,8 +10,8 @@ class FlipkartSpiderSpider(scrapy.Spider):
 
         product_name = response.css('.B_NuCI').css('::text').extract()[0]
         product_description = response.css('._2cM9lP').css('::text').extract()
-        product_price = response.css('._16Jk6d').css('::text').extract()[0]
-        product_rating = response.css('._2_R_DZ span span:nth-child(1)').css('::text').extract()[0]
+        product_price = response.css('._16Jk6d').css('::text').extract()[0].replace(u'\u20B9','')
+        product_rating = response.css('._2_R_DZ span span:nth-child(1)').css('::text').extract()[0].replace(u'\xa0','').replace('Ratings','')
 
 
         items['product_name'] = product_name
